@@ -108,8 +108,8 @@ analytics:
 # Site Author
 author:
   name             : "Maximilian Staebler"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Data Science Master Student. Sometime spending his sparetime on Data-Science-Things - ord drinking beer. "
+  avatar           : "/images/me-1.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio              : "Data Science Master Student. Spending his sparetime on Data-Science-Things and beer."
   location         : "Darmstadt / Stuttgart - Germany"
   email            : "maximilianstaebler@icloud.com"
   links:
@@ -293,3 +293,11 @@ defaults:
       comments: # true
       share: true
       related: true
+    
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
