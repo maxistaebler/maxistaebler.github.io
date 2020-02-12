@@ -12,3 +12,5 @@ My name is Maximilian Staebler, I am 25 years old and study Data Science at the 
 This page contains projects that I have realized in a university context or in my spare time. In the big landscape of Data Science I am most enthusiastic about **Time Series Analysis**, **Urban Data Science (Geo-Data Analysis)** and **Data Visualization**. Therefore these topics are of course more represented than others.
 
 If you have any questions about projects or comments on the results achieved, please do not hesitate to contact me: [Mail](mailto:maximilianstaebler@icloud.com)
+
+If you want to create a similar website hosted by [github]https://www.github.com) there is an awesome tutorial which explains everything step-by-step. Just click [here](https://www.youtube.com/watch?v=qWrcgHwSG8M&t=1054s).
