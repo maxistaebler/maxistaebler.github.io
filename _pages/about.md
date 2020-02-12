@@ -14,4 +14,3 @@ My name is Maximilian Staebler, I am 25 years old and study Data Science at the 
 Diese Seite beinhaltet Projekte die ich im universitären Kontext oder in meiner Freizeit realisiert habe. In der großen Landschaft des Data Science begeistern mich die Themen **Zeitreihenanalyse**, **Urban Data Science (Geo-Data Analysis)** und **Daten Visualisierung** am meisten. Daher sind diese Themen natürlich auch stärker vertreten als andere.
 
 Bei Fragen zu Projekten oder Anmerkungen zu erzielten Ergebnissen stehe ich natürlich jederzeit zur Verfügung: [Mail](mailto:maximilianstaebler@icloud.com)
-
