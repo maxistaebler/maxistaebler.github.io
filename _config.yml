@@ -108,14 +108,14 @@ analytics:
 # Site Author
 author:
   name             : "Maximilian Staebler"
-  avatar           : "/images/me-1.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/images/kuh-2.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Data Science Master Student. Spending his sparetime on Data-Science-Things and beer."
   location         : "Darmstadt / Stuttgart - Germany"
   email            : "maximilianstaebler@icloud.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:maximilianstaebler@icloud.com"
+      # url: "mailto:maximilianstaebler@icloud.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -127,7 +127,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/maximilianstaebler/"
