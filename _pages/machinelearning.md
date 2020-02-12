@@ -1,7 +1,7 @@
 ---
-layout: archive
+# layout: archive
 title: "Machine Learning Posts by Tags"
-permalink: /machinelearning/
+permalink: /machine-learning/
 header:
   image: "/images/ny.jpg"
 ----

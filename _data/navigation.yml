@@ -3,9 +3,9 @@ main:
   - title: "About"
     url: /about/
   - title: "Machine Learning"
-    url: /machinelearning/
-  - title: "Data Visualizations"
-    url: /visualizations/
+    url: /machine-learning/
+  # - title: "Data Visualizations"
+  #   url: /visualizations/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
