@@ -13,4 +13,4 @@ This page contains projects that I have realized in a university context or in m
 
 If you have any questions about projects or comments on the results achieved, please do not hesitate to contact me: [Mail](mailto:maximilianstaebler@icloud.com)
 
-If you want to create a similar website hosted by [github]https://www.github.com) there is an awesome tutorial which explains everything step-by-step. Just click [here](https://www.youtube.com/watch?v=qWrcgHwSG8M&t=1054s).
+If you want to create a similar website hosted by [github](https://www.github.com) there is an awesome tutorial which explains everything step-by-step. Just click [here](https://www.youtube.com/watch?v=qWrcgHwSG8M&t=1054s).
