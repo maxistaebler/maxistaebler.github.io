@@ -109,7 +109,7 @@ analytics:
 author:
   name             : "Maximilian Staebler"
   avatar           : "/images/me-1.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Data Science Master Student. Spending his sparetime on Data-Science-Things and beer."
+  bio              : "Data Science Master Student. Spending his sparetime on Data Science Things and beer."
   location         : "Darmstadt / Stuttgart - Germany"
   email            : "maximilianstaebler@icloud.com"
   links:
