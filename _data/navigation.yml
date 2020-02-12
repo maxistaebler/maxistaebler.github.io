@@ -4,6 +4,8 @@ main:
     url: /about/
   - title: "Machine Learning"
     url: /machine-learning/
+  - title: "Other Topics"
+    url: /other-topics/
   # - title: "Data Visualizations"
   #   url: /visualizations/
   # - title: "About"
