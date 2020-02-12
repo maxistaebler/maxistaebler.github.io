@@ -2,7 +2,7 @@
 title: "About"
 permalink: /about/
 header:
-    image: "/images/kuh-2.jpeg"
+    image: "/images/ny.jpg"
 ---
 
 Ich bin ein super interessanter text.
