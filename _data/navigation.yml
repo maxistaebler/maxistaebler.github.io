@@ -3,7 +3,7 @@ main:
   - title: "About"
     url: /about/
   - title: "Machine Learning"
-    url: https://maximuskarlson.github.io/machine-learning/
+    url: /machine-learning/
   # - title: "Data Visualizations"
   #   url: /visualizations/
   # - title: "About"
