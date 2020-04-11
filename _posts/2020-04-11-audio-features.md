@@ -16,6 +16,7 @@ mathjax: "true"
 - [Scope](#scope)
 - [Feature Extraction](#feature-extraction)
 - [Analyze different songs](#analyze-different-songs)
+    - [Resulting DataFrame of the feature extraction](#resulting-dataframe-of-the-feature-extraction)
 
 <!-- /TOC -->
 
@@ -201,7 +202,16 @@ beats_std = np.std(beats)
 
 The given songs belong to the following genre:
 
-* **0:** Punk
+* **0:** Classic
 * **1:** Hardstyle
-* **2:** Classic
-* **3:** House
+* **2:** House
+* **3:** Punk
+
+## Resulting DataFrame of the feature extraction
+
+As a result of the extracting step we get a 28 x 311 DataFrame which contains 27 features for each of the songs. Important to mention here is that **not every genre as the same amount of songs within tha dataset!** We have the following distribution:
+
+* **0:** Classic:   37 (~ 13%)
+* **1:** Hardstyle: 60 (~ 19%)
+* **2:** House:     80 (~ 25%)
+* **3:** Punk:      134 (~ 43%)
