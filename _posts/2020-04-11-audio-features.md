@@ -227,3 +227,5 @@ We tested a Lasso Regression + PCA as well as a pure PCA without a previous elim
 2. Pure PCA on 4 main components.
 
 ![](./images/audio-features/lasso_pca.png)
+
+sdjsbndsjds
