@@ -17,6 +17,7 @@ mathjax: "true"
 - [Feature Extraction](#feature-extraction)
 - [Analyze different songs](#analyze-different-songs)
     - [Resulting DataFrame of the feature extraction](#resulting-dataframe-of-the-feature-extraction)
+    - [Preprocessing for Machine Öearning approaches](#preprocessing-for-machine-%C3%B6earning-approaches)
 
 <!-- /TOC -->
 
@@ -215,3 +216,14 @@ As a result of the extracting step we get a 28 x 311 DataFrame which contains 27
 * **1:** Hardstyle: 60 (~ 19%)
 * **2:** House:     80 (~ 25%)
 * **3:** Punk:      134 (~ 43%)
+
+## Preprocessing for Machine Öearning approaches
+
+As already described in detail, the dimension of the data set has been reduced to achieve a better final result. With only 311 data points and 27 features the probability of overfitting is very high.
+
+We tested a Lasso Regression + PCA as well as a pure PCA without a previous elimination of features by the Lasso Regression. 
+
+1. Lasso-regression with subsequent PCA of the most important features.
+2. Pure PCA on 4 main components.
+
+![](./images/audio-features/lasso_pca.png)
