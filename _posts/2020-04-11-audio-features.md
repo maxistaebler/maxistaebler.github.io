@@ -217,7 +217,7 @@ As a result of the extracting step we get a 28 x 311 DataFrame which contains 27
 * **2:** House:     80 (~ 25%)
 * **3:** Punk:      134 (~ 43%)
 
-## Preprocessing for Machine Öearning approaches
+## Preprocessing for Machine Learning approaches
 
 As already described in detail, the dimension of the data set has been reduced to achieve a better final result. With only 311 data points and 27 features the probability of overfitting is very high.
 
