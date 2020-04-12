@@ -226,10 +226,6 @@ We tested a Lasso Regression + PCA as well as a pure PCA without a previous elim
 1. Lasso-regression with subsequent PCA of the most important features.
 2. Pure PCA on 4 main components.
 
-![](./images/audio-features/lasso_pca.png)  
-
-![](./images/audio-features/harmonic_percussive.png) 
-
-<img src="images/audio-features/harmonic_percussive.png" alt="hi" class="inline"/>
+![](../images/audio-features/lasso_pca.png)  
 
 sdjsbndsjds
