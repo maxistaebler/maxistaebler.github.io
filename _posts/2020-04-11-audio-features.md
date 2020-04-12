@@ -230,4 +230,6 @@ We tested a Lasso Regression + PCA as well as a pure PCA without a previous elim
 
 ![](./images/audio-features/harmonic_percussive.png) 
 
+<img src="images/audio-features/harmonic_percussive.png" alt="hi" class="inline"/>
+
 sdjsbndsjds
