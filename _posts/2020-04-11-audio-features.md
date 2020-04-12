@@ -17,7 +17,7 @@ mathjax: "true"
 - [Feature Extraction](#feature-extraction)
 - [Analyze different songs](#analyze-different-songs)
     - [Resulting DataFrame of the feature extraction](#resulting-dataframe-of-the-feature-extraction)
-    - [Preprocessing for Machine Öearning approaches](#preprocessing-for-machine-%C3%B6earning-approaches)
+    - [Preprocessing for Machine Learning approaches](#preprocessing-for-machine-learning-approaches)
 
 <!-- /TOC -->
 
@@ -226,6 +226,6 @@ We tested a Lasso Regression + PCA as well as a pure PCA without a previous elim
 1. Lasso-regression with subsequent PCA of the most important features.
 2. Pure PCA on 4 main components.
 
-![](./images/audio-features/lasso_pca.png)
+![](./images/audio-features/lasso_pca.png)  
 
 sdjsbndsjds
