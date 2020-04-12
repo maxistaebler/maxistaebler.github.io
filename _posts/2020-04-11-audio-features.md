@@ -51,7 +51,8 @@ For analyzing these songs and therefore be able to create corresponding features
 * **Harmonic / Percussive Split of the original audio data:**  
 The aim of the Harmonic/Percussive separation is to decompose the original music signal to the harmonic (i.e. pitched instruments) and the percussive (non pitched instruments, percussion) parts of the signal. Such methods can be applied to audio mixing software, or can be adopted as preprocessing on other Music Information Retrieval Methods such as rhythm analysis or chord/tonality recognition.
 The method is based on the assumption that harmonic components exhibit horizontal lines on the spectrogram while the percussive sounds are evident as vertical lines. By adopting Non-Linear image filters applied to the spectrogram in order to filter out these component, the proposed method is simple, intuitive and does not make any prior assumption of the genre,style or instrumentation of the target music.  
-![](./images/audio-features/harmonic_percussive.png)  
+![](../images/audio-features/harmonic_percussive.png)  
+
 Source: http://mir.ilsp.gr/harmonic_percussive_separation.html
 
 ```python
@@ -119,7 +120,7 @@ noteFrequency = getNoteFrequency(chroma)
 
 * **Spectral bandwidth:**  
 Computes the order- p  spectral bandwidth:  
-$ ( \sum \limits_{n=0}^{\infty} S ( k ) * (  f ( k ) - f_{c} )^p)^{\frac{1}{p}} ) $  
+$( \sum \limits_{n=0}^{\infty} S ( k ) * (  f ( k ) - f_{c} )^p)^{\frac{1}{p}} )$  
 where  S(k)  is the spectral magnitude at frequency bin  k ,  f(k)  is the frequency at bin  k , and  fc  is the spectral centroid. When  p=2 , this is like a weighted standard deviation.
 
 ```python
