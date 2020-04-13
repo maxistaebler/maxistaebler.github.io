@@ -121,6 +121,9 @@ noteFrequency = getNoteFrequency(chroma)
 * **Spectral bandwidth:**  
 Computes the order- p  spectral bandwidth:  
 $( \sum \limits_{n=0}^{\infty} S ( k ) * (  f ( k ) - f_{c} )^p)^{\frac{1}{p}} )$  
+
+$3 + 3 = 6$
+
 where  S(k)  is the spectral magnitude at frequency bin  k ,  f(k)  is the frequency at bin  k , and  fc  is the spectral centroid. When  p=2 , this is like a weighted standard deviation.
 
 ```python
