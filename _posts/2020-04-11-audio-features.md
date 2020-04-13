@@ -490,9 +490,9 @@ The resulting DataFrame looks like this and just got saved as a `.csv` file:
 
 ## Compare the results by applying the same ML methods
 
-I applied the same preprocessing methods as described above with my own features and got this result when ploting the first to principla components of the data:
+I applied the same preprocessing methods as described above with my own features and got this result when ploting the first to principal components of the data:
 
-![](../images/audio-features/spotify_features.jpg)
+![](../images/audio-features/pca_spotify.png)
 
 The first glance gives the impression that with the spotify parameters it is much easier to distinguish between *classic* or *not classic* but the other three genres are much closer than before. Anyways, as we just plot the first three PC's it is possible that in a higher dimensional room the genres are easier to separate. 
 
