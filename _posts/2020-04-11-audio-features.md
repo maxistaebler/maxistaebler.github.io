@@ -19,6 +19,13 @@ mathjax: "true"
     - [Resulting DataFrame of the feature extraction](#resulting-dataframe-of-the-feature-extraction)
     - [Preprocessing for Machine Learning approaches](#preprocessing-for-machine-learning-approaches)
     - [Machine Learning approaches](#machine-learning-approaches)
+        - [k-means clustering](#k-means-clustering)
+        - [SVM](#svm)
+    - [Conclusion](#conclusion)
+- [Compare results to the Spotify-API](#compare-results-to-the-spotify-api)
+    - [Extract Data](#extract-data)
+    - [Compare the results by applying the same ML methods](#compare-the-results-by-applying-the-same-ml-methods)
+    - [Result](#result)
 
 <!-- /TOC -->
 
@@ -241,4 +248,274 @@ We are in the furtunate sitaution where we can make a supervised AND an unsuperv
 
 Both approaches will be tested an evaluated.
 
+### k-means clustering
 
+For the clustering we get the following results:
+
+![](../images/audio-features/pca_cluster.jpg)
+
+We can see that there are indeed 4 clusters. Each for one of the genre!
+
+* **0:** house
+* **1:** classic
+* **2:** punk
+* **3:** hardstyle
+
+But also worth mentioning is the fact that for example the third cluster alone contains 16 misclassified songs. Calculating the overall accuracy we see that this approach leads to 87% correctly classified songs!
+
+```python
+length = len(kmeans_eval)
+correct = sum(kmeans_eval.apply(lambda x : 1 if x['encoded_target'] == x['preds'] else 0, axis=1))
+
+print('Total songs: {}, correct predicted labels: {}'.format(length, correct))
+
+print('Total percentage: {}%'.format(round((correct/length) * 100, 2)))
+
+##### Output
+
+$ Total songs: 311, correct predicted labels: 271
+$ Total percentage: 87.14%
+```
+
+### SVM
+
+For the `SVM` and the `RandomForest` approach we will use the with regard to the dimensionality reduced dataset of the PCA. This has the reason that 27 variables would just be too much for such a "small" dataset and just generate overfitting.
+
+Anyways, we need to encode the `target` variable again into numbers.
+
+```python
+le = LabelEncoder()
+principalDf['target_encoded'] = le.fit_transform(principalDf['target'])
+```
+
+**Train Test Split:**
+
+We need to make sure that the trainingsset and the testingset are balanced when it comes to the different genres. We can ensure that with the function `strtify`.
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, stratify=y ,random_state=7)
+
+print(y_train.value_counts() / len(y_train))
+print(y_test.value_counts() / len(y_test))
+
+##### Output
+
+3    0.432692
+2    0.254808
+1    0.192308
+0    0.120192
+Name: target_encoded, dtype: float64
+
+3    0.427184
+2    0.262136
+1    0.194175
+0    0.116505
+Name: target_encoded, dtype: float64
+```
+
+Perfect! Every genre has the same amount of values in the Train and Test set!
+
+Now it is time to train out ML models. In terms of keeping this already quite long artcile as short as possible we only will discuss the `SVM`  approach here. The `RF` model can be viewed in the detailed notebook! I did not spend a lot of time with training the SVM model, thereofore there is a lot of room from improvement!
+
+```python
+clf_svm = SVC(gamma='auto')
+clf_svm.fit(X_train, y_train)
+
+svm_preds = clf_svm.predict(X_test, )
+
+print(classification_report(le.inverse_transform(y_test), le.inverse_transform(svm_preds)))
+
+
+#####  Output
+
+                precision    recall    f1-score   support
+
+     classic       1.00      0.92      0.96        12
+   hardstyle       0.95      0.90      0.92        20
+       house       1.00      0.93      0.96        27
+        punk       0.92      1.00      0.96        44
+
+    accuracy                           0.95       103
+   macro avg       0.97      0.94      0.95       103
+weighted avg       0.95      0.95      0.95       103
+
+```
+
+## Conclusion
+
+The results are very good, the combinatiomn of Principal Component Analysis and Support Vector machines gave us the best accuracy of 95% when classifing songs with the generated features!
+
+Further interpretation of the classification  report of the SVM results:
+
+* The `recall` means *how many of this class you find over the whole number of element of this class*
+* The `precision` will be *how many are correctly classified among that class*. 
+* The `f1-score` is the harmonic mean between precision & recall.
+* The `support` is the number of occurence of the given class in your dataset.
+
+Other methods like `lasso regression` for dimensionality reduction or `kmeans clsutering` for classification were tested but could bot achive similar results than the `pca` + `svm` approach.
+
+# Compare results to the Spotify-API
+
+`Spotipy` is a lightweight Python library for the Spotify Web API. With `Spotipy` you get full access to all of the music data provided by the Spotify platform.  
+`Spotipy` supports all of the features of the Spotify Web API including access to all end points, and support for user authorization. For details on the capabilities you are encouraged to review the Spotify Web API documentation.
+
+I wrote the following functions to easliy extract all features of every track in a given playlist on Spotify:
+
+```python
+def get_playlist(playlist_id):
+    # Define Playlist
+    dic = sp.playlist_tracks(playlist_id)
+
+    # Set up empty listsa
+    artists = []
+    track_name = []
+    track_id = []
+    track_duration = []
+    track_popularity = []
+
+    # Parse to dictionary
+    for track in dic['items']:
+        artists.append(track['track']['artists'][0]['name'])
+        track_name.append(track['track']['name'])
+        track_id.append(track['track']['id'])
+        track_duration.append(track['track']['duration_ms'])
+        track_popularity.append(track['track']['popularity'])
+
+    # Create pandas DataFrame
+    playlist = {
+      'track_name' : track_name,
+      'artist' : artists,
+      'track_id' : track_id,
+      'track_duration' : track_duration,
+      'track_popularity' : track_popularity
+    }
+
+    return pd.DataFrame(playlist)
+
+
+def get_features(dataframe):
+    # Define empty lists
+    acousticness = []
+    danceability = []
+    energy = []
+    instrumentalness = []
+    liveness = []
+    loudness = []
+    speechiness = []
+    tempo = []
+    valence = []
+
+    for index, row in dataframe.iterrows():
+
+        # Get track id
+        idx = row['track_id']
+
+        # Get corresponding features
+        features = sp.audio_features(str(idx))
+
+        acousticness.append(features[0]['acousticness'])
+        danceability.append(features[0]['danceability'])
+        energy.append(features[0]['energy'])
+        instrumentalness.append(features[0]['instrumentalness'])
+        liveness.append(features[0]['liveness'])
+        loudness.append(features[0]['loudness'])
+        speechiness.append(features[0]['speechiness'])
+        tempo.append(features[0]['tempo'])
+        valence.append(features[0]['valence'])
+
+    # Append the extracted infos to a new dataset
+
+    output = dataframe.copy()
+
+    output['acousticness'] = acousticness
+    output['danceability'] = danceability
+    output['energy'] = energy
+    output['instrumentalness'] = instrumentalness
+    output['liveness'] = liveness
+    output['loudness'] = loudness
+    output['speechiness'] = speechiness
+    output['tempo'] = tempo
+    output['valence'] = valence
+
+    return output
+```
+
+**Recap**
+
+We created two functions `get_playlist` and `get_features` which allow us to extract all needed informations of a given spotify-playlist.
+
+**Usage:**
+
+
+1.   *get_playlist*:
+      
+      ```playlist = get_playlist('PLAYLIST_ID')```
+
+2.   *get_features*:
+
+      ```track_features = get_features(playlist)``` 
+
+```python
+def get_track_informations(playlist_id):
+    playlist = get_playlist(playlist_id)
+    return get_features(playlist)
+```
+
+## Extract Data
+
+As we have now functions which make it easy for us to exract features from as many playlists as we want, we will try to get a comparable dataset as we used for our own songs.
+
+Our own dataset consits of:
+
+* 311 songs in total
+    * 37 Classic songs
+    * 60 Hardstyle songs
+    * 80 house songs
+    * 134 punk songs
+    
+The goal is to create a dataset with a comparable distribution.
+
+* Hardstyle - [Link](spotify:playlist:3bGSAHGYFEDxyEj7uXe0qq)  
+**50 Songs**
+* Punk - [Link](spotify:playlist:37i9dQZF1DXd6tJtr4qeot)  
+**150 Songs**
+* Classic - [Link](spotify:playlist:37i9dQZF1DWWEJlAGA9gs0)  
+**30 songs**
+* House - [Link](spotify:playlist:2otQLmbi8QWHjDfq3eL0DC)  
+**60 songs**
+
+The resulting DataFrame looks like this and just got saved as a `.csv` file:
+
+![](../images/audio-features/spotify_features.jpg)
+
+## Compare the results by applying the same ML methods
+
+I applied the same preprocessing methods as described above with my own features and got this result when ploting the first to principla components of the data:
+
+![](../images/audio-features/spotify_features.jpg)
+
+The first glance gives the impression that with the spotify parameters it is much easier to distinguish between *classic* or *not classic* but the other three genres are much closer than before. Anyways, as we just plot the first three PC's it is possible that in a higher dimensional room the genres are easier to separate. 
+
+When applying `SVM` to the data and printing the classification report we get the following results:
+
+```python
+                precision   recall  f1-score   support
+
+           0       0.67      0.12      0.21        16
+           1       1.00      1.00      1.00        10
+           2       0.62      1.00      0.77        50
+           3       1.00      0.15      0.26        20
+
+    accuracy                           0.68        96
+   macro avg       0.82      0.57      0.56        96
+weighted avg       0.75      0.68      0.59        96
+
+```
+
+## Result
+
+As expected by looking at the PCA plot the accuracy is lower than with out generated features! Here we only achieve 65% (68% with PCA data) compared to 95% with our features!
+
+To be fair, we had 27 features and spotify only provides 9. 
+
+Anyways, this is a great success and we outperformt SPOTIFYYYYYYYYYYYYY :-)
